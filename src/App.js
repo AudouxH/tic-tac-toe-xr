@@ -9,11 +9,6 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import circle from './assets/Circle.glb';
 import cross from './assets/Cross.glb';
 import grid from './assets/Grid.glb';
-import laptop from './assets/laptop.glb';
-import coffee from './assets/coffee.glb';
-import ether from './assets/ether.glb';
-import phone from './assets/galaxyS20.glb';
-import twitch from './assets/twitch.glb';
 
 const ModelCircle = ({ posX, posY, setArrayPosition, arrayPosition, index, moveIndex, setMoveIndex }) => {
   const { scene } = useLoader(GLTFLoader, circle);
@@ -96,16 +91,6 @@ const Plan = () => {
   );
 }
 
-const Laptop = () => {
-  const laptopShade = useLoader(GLTFLoader, twitch);
-
-  return (
-    <mesh>
-      <primitive object={laptopShade.scene} position={[0, 0, 0]} />
-    </mesh>
-  );
-}
-
 const App = () => {
   const [listOfModel] = useState([
     { posX: 7, posY: -6, isCircle: false },
@@ -131,7 +116,7 @@ const App = () => {
           <Hands />
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
-          {/* {listOfModel.length ?
+          {listOfModel.length ?
             listOfModel.map((model, index) => {
               if (model.isCircle) {
                 return <ModelCircle
@@ -156,10 +141,9 @@ const App = () => {
                   setMoveIndex={setMoveIndex} />
               }
             }) : <React.Fragment />
-          } */}
-          <Laptop/>
+          }
           <OrbitControls/>
-          {/* <Plan /> */}
+          <Plan />
         </XR>
       </Canvas>
     </>
